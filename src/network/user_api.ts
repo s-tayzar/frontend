@@ -1,7 +1,7 @@
 import { ConflictError, UnauthorizedError } from "../errors/http_errors";
 import { User } from "../models/user";
 
-const root = "http://localhost:3000";
+const root = "http://localhost:5000";
 
 export async function getLoggedInUser(): Promise<User> {
     const response = await fetchData(root + "/api/users", { method: "GET" });
