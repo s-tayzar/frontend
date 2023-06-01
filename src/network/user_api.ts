@@ -1,8 +1,10 @@
 import { ConflictError, UnauthorizedError } from "../errors/http_errors";
 import { User } from "../models/user";
 
+const root = "http://localhost:3000";
+
 export async function getLoggedInUser(): Promise<User> {
-    const response = await fetchData("/api/users", { method: "GET" });
+    const response = await fetchData(root + "/api/users", { method: "GET" });
     return response.json();
 }
 
@@ -15,7 +17,7 @@ export interface SignUpCredentials {
 }
 
 export async function signUp(credentials: SignUpCredentials): Promise<User> {
-    const response = await fetchData("/api/users/signup",
+    const response = await fetchData(root + "/api/users/signup",
         {
             method: "POST",
             headers: {
@@ -32,7 +34,7 @@ export interface LoginCredentials {
 }
 
 export async function login(credentials: LoginCredentials): Promise<User> {
-    const response = await fetchData("/api/users/login",
+    const response = await fetchData(root + "/api/users/login",
         {
             method: "POST",
             headers: {
@@ -44,7 +46,7 @@ export async function login(credentials: LoginCredentials): Promise<User> {
 }
 
 export async function logout() {
-    await fetchData("/api/users/logout", { method: "POST" });
+    await fetchData(root + "/api/users/logout", { method: "POST" });
 }
 
 async function fetchData(input: RequestInfo, init?: RequestInit) {
